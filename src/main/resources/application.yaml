@@ -3,7 +3,24 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: pkc-4nym6.us-east-1.aws.confluent.cloud:9092
+          configuration:
+            security.protocol: SASL_SSL
+            sasl.mechanism: PLAIN
+            ssl.endpoint.identification.algorithm: https
+            request.timeout.ms: 20000
+            bootstrap.servers: pkc-4nym6.us-east-1.aws.confluent.cloud:9092
+            retry.backoff.ms: 500
+            sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="YDCHXCMFZ7SWQINO" password="+uwUTh5q+Uef6quGC9B0fRgMJiqY5IrVTOFjYMMcxuO0eQhwF6w6RY+fBQrBXewo"
+            basic.auth.credentials.source: USER_INFO
+            schema.registry.basic.auth.user.info: MU77M2KYSH277VBT:O+8GsS2/NINgIoRvQ4PjvnacEczBnHktLcR0V2Dh/k98mpJE0Ue1o12tPc0rXRVz
+            schema.registry.url: https://psrc-4yovk.us-east-2.aws.confluent.cloud
+          producerProperties:
+            key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+          consumerProperties:
+            key.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       bindings:
         greetings-in:
           destination: greetings
@@ -11,3 +28,23 @@ spring:
         greetings-out:
           destination: greetings
           contentType: application/json
+            streams:
+              binder:
+                configuration:
+                  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                  default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+                  security.protocol: SASL_SSL
+                  sasl.mechanism: PLAIN
+                  jaas.options.username: nkutuf@londonhydro.com
+                  jaas.options.password: 12Kirunda
+                  jaas.loginModule: org.apache.kafka.common.security.plain.PlainLoginModule
+                  ssl.endpoint.identification.algorithm: https
+                  request.timeout.ms: 20000
+                  bootstrap.servers: pkc-4nym6.us-east-1.aws.confluent.cloud:9092
+                  retry.backoff.ms: 500
+                  sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="YDCHXCMFZ7SWQINO" password="+uwUTh5q+Uef6quGC9B0fRgMJiqY5IrVTOFjYMMcxuO0eQhwF6w6RY+fBQrBXewo"
+                  basic.auth.credentials.source: USER_INFO
+                  schema.registry.basic.auth.user.info: MU77M2KYSH277VBT:O+8GsS2/NINgIoRvQ4PjvnacEczBnHktLcR0V2Dh/k98mpJE0Ue1o12tPc0rXRVz
+                  schema.registry.url: https://psrc-4yovk.us-east-2.aws.confluent.cloud
+                  key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                  value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
